@@ -19,7 +19,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.UnknownNullability;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Optional;
 
@@ -44,7 +44,7 @@ public class EntityHelper {
 
     private static boolean isSneaking(BlockPlaceContext placeContext) {
         return Optional.ofNullable(placeContext.getPlayer())
-                .map(Player::isShiftKeyDown)
+                .map(Player::isSecondaryUseActive)
                 .orElse(false);
     }
 
@@ -115,25 +115,20 @@ public class EntityHelper {
             entity.snapTo(pos, entity.getYRot(), entity.getXRot());
     }
 
-    public static boolean allowCushionInteraction(
-            Player player,
-            InteractionHand hand
-    ) {
-        ItemStack stack = player.getItemInHand(hand);
-        if (player.isSecondaryUseActive() && stack.is(ItemTags.CUSHIONS))
-            return false;
-
-        return player.isSecondaryUseActive();
-    }
-
-    public static boolean stackCushion(
+    @Nullable
+    public static InteractionResult stackCushion(
             Player player,
             Entity cushion,
             InteractionHand hand
     ) {
         ItemStack stack = player.getItemInHand(hand);
-        if (!stack.is(ItemTags.CUSHIONS) || !player.isSecondaryUseActive())
-            return player.startRiding(cushion);
+        if (!player.isSecondaryUseActive()
+                || !stack.is(ItemTags.CUSHIONS)
+                || cushion.isVehicle())
+            return null;
+
+        if (cushion.level().isClientSide())
+            return InteractionResult.SUCCESS;
 
         Vec3 newLocation = cushion.position();
         BlockHitResult hitResult = new BlockHitResult(
@@ -143,6 +138,7 @@ public class EntityHelper {
                 false
         );
         UseOnContext context = new UseOnContext(player, hand, hitResult);
-        return stack.useOn(context) == InteractionResult.SUCCESS;
+        stack.useOn(context);
+        return InteractionResult.CONSUME;
     }
 }
