@@ -51,3 +51,8 @@ Vanilla behavior is currently to vertically position cushions exactly where clic
   - Causes cushions placed on the inner walls of blocks like cauldrons to snap to the nearest pixel.
 - Default
   - Off
+
+---
+### if this mod is installed on a server, but not a client, everything will work as intended, with the following purely visual exceptions:
+1. The player's hand will swing even when cushion placement fails due to intersection with an existing cushion.
+2. The player's hand will not swing when stacking a cushion on another cushion.
