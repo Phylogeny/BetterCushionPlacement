@@ -15,6 +15,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -97,6 +98,12 @@ public class EntityHelper {
             }
         }
         return pos;
+    }
+
+    @Nullable
+    public static InteractionResult checkCushionIntersection(Level level, AABB spawnAABB) {
+        return level.getEntitiesOfClass(Cushion.class, spawnAABB).isEmpty()
+                ? null : InteractionResult.FAIL;
     }
 
     public static void adjustEntityPosition(
