@@ -1,0 +1,38 @@
+{
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_display_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "${curseforge_homepage_url}",
+        "sources": "${source_url}",
+        "issues": "${issue_tracker_url}"
+    },
+    "license": "${license}",
+    "icon": "${logo}",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.github.phylogeny.bettercushionplacement.BetterCushionPlacement"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json"
+    ],
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": [
+            "~26.3-alpha",
+            "~26.3-snapshot"
+        ],
+        "java": ">=${java_version}"
+    },
+    "suggests": {
+        "another-mod": "*"
+    }
+}

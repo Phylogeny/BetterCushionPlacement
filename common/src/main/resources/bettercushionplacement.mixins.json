@@ -1,0 +1,18 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.github.phylogeny.bettercushionplacement.mixin",
+  "compatibilityLevel": "JAVA_25",
+  "mixins": [
+    "MixinCushionItem",
+    "MixinCushion"
+  ],
+  "client": [],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}

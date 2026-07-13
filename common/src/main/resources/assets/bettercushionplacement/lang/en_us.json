@@ -1,0 +1,4 @@
+{
+  "gamerule.bettercushionplacement.snap_cushion_elevation_to_pixel_grid": "Snap Cushion Elevation To Pixel Grid",
+  "gamerule.bettercushionplacement.snap_cushion_elevation_to_pixel_grid.description": "Causes cushions placed on the inner walls of blocks like cauldrons to snap to the nearest pixel."
+}
