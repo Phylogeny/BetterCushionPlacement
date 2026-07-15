@@ -77,9 +77,8 @@ public class EntityHelper {
                 sprinting = true;
             }
         }
-        if (!sneaking && !sprinting) {
+        if (!sneaking && !sprinting)
             return snapElevationTOPixelGrid(original, placeContext);
-        }
 
         Grid grid = sprinting ? Grid.PIXEL : Grid.BLOCK;
         Vec3 newPos = sneaking && sprinting ? clicked : grid.snapTo(clicked);
