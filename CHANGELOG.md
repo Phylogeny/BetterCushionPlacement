@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Made mixin method and variable targeting more robust.
+
 ## [1.0.0] - 2026-07-13
 
 **Minecraft:** 26.3-snapshot-3

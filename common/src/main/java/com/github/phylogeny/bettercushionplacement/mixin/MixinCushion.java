@@ -22,8 +22,8 @@ public class MixinCushion {
     )
     private void stackCushion(
             CallbackInfoReturnable<InteractionResult> cir,
-            @Local Player player,
-            @Local InteractionHand hand
+            @Local(argsOnly = true, name = "player") Player player,
+            @Local(argsOnly = true, name = "hand") InteractionHand hand
     ) {
         Optional.ofNullable(EntityHelper.stackCushion(player, (Cushion)(Object)this, hand))
                 .ifPresent(cir::setReturnValue);

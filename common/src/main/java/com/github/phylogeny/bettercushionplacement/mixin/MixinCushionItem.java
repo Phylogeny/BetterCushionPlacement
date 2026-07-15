@@ -22,11 +22,10 @@ public class MixinCushionItem {
     @ModifyVariable(
             method = "useOn(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;",
             at = @At("STORE"),
-            ordinal = 0
-    )
+            name = "entityPos")
     private Vec3 adjustPlacementPosition(
             Vec3 entityPos,
-            @Local BlockPlaceContext placeContext
+            @Local(name = "placeContext") BlockPlaceContext placeContext
     ) {
         return EntityHelper.adjustPlacementPosition(entityPos, placeContext);
     }
@@ -35,14 +34,14 @@ public class MixinCushionItem {
             method = "useOn(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;",
             at = @At(
                     value = "INVOKE",
-                    target = "getItemInHand()Lnet/minecraft/world/item/ItemStack;"
+                    target = "Lnet/minecraft/world/item/context/UseOnContext;getItemInHand()Lnet/minecraft/world/item/ItemStack;"
             ),
             cancellable = true
     )
     private void checkCushionIntersection(
             CallbackInfoReturnable<InteractionResult> cir,
-            @Local Level level,
-            @Local AABB spawnAABB
+            @Local(name = "level") Level level,
+            @Local(name = "spawnAABB") AABB spawnAABB
     ) {
         Optional.ofNullable(EntityHelper.checkCushionIntersection(level, spawnAABB))
                 .ifPresent(cir::setReturnValue);
@@ -52,15 +51,15 @@ public class MixinCushionItem {
             method = "useOn(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;",
             at = @At(
                     value = "INVOKE",
-                    target = "addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"
+                    target = "Lnet/minecraft/server/level/ServerLevel;addFreshEntity(Lnet/minecraft/world/entity/Entity;)Z"
             )
     )
     private void adjustEntityPosition(
             CallbackInfoReturnable<InteractionResult> cir,
-            @Local Cushion entity,
-            @Local Vec3 entityPos,
-            @Local BlockPlaceContext placeContext
+            @Local(name = "cushion") Cushion cushion,
+            @Local(name = "entityPos") Vec3 entityPos,
+            @Local(name = "placeContext") BlockPlaceContext placeContext
     ) {
-        EntityHelper.adjustEntityPosition(entity, entityPos, placeContext);
+        EntityHelper.adjustEntityPosition(cushion, entityPos, placeContext);
     }
 }
