@@ -2,12 +2,12 @@ package com.github.phylogeny.bettercushionplacement.platform.services.registry;
 
 import com.github.phylogeny.bettercushionplacement.registry.RegistryObj;
 import net.minecraft.world.level.gamerules.GameRule;
-import net.minecraft.world.level.gamerules.GameRuleCategory;
+
+import java.util.function.Supplier;
 
 public interface IGameRuleRegistry {
-    RegistryObj<GameRule<Boolean>> createAndRegisterBoolean(
+    <T> RegistryObj<GameRule<T>> register(
             String name,
-            boolean defaultValue,
-            GameRuleCategory category
+            Supplier<GameRule<T>> factory
     );
 }
