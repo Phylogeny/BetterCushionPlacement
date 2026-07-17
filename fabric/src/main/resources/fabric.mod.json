@@ -17,7 +17,10 @@
     "environment": "*",
     "entrypoints": {
         "main": [
-            "com.github.phylogeny.bettercushionplacement.BetterCushionPlacement"
+            "com.github.phylogeny.bettercushionplacement.FabricBetterCushionPlacement"
+        ],
+        "client": [
+            "com.github.phylogeny.bettercushionplacement.client.FabricClientSetup"
         ]
     },
     "mixins": [

@@ -1,6 +1,7 @@
 package com.github.phylogeny.bettercushionplacement.platform.registry;
 
 import com.github.phylogeny.bettercushionplacement.Constants;
+import com.github.phylogeny.bettercushionplacement.FabricNetworkRegistry;
 import com.github.phylogeny.bettercushionplacement.registry.RegistryObj;
 import com.google.common.base.Suppliers;
 import com.google.common.collect.Lists;
@@ -31,5 +32,6 @@ public class FabricRegistryManager {
 
     public static void register() {
         REGISTRY_ENTRIES.forEach(RegistryObj::get);
+        FabricNetworkRegistry.registerCommon();
     }
 }

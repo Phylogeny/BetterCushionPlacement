@@ -1,4 +1,4 @@
 {
-  "gamerule.bettercushionplacement.snap_cushion_elevation_to_pixel_grid": "Snap Cushion Elevation To Pixel Grid",
-  "gamerule.bettercushionplacement.snap_cushion_elevation_to_pixel_grid.description": "Causes cushions placed on the inner walls of blocks like cauldrons to snap to the nearest pixel."
+  "gamerule.bettercushionplacement.allow_inner_wall_cushion_placement": "Allow Inner Wall Cushion Placement",
+  "gamerule.bettercushionplacement.allow_inner_wall_cushion_placement.description": "Ignores cushion_uses_collision_shape block tags, thus allowing sub-pixel cushion placement on the inner walls of cauldrons, composters, and hoppers without a data pack."
 }

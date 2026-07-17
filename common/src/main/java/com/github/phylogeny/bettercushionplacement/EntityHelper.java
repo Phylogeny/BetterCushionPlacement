@@ -1,5 +1,6 @@
 package com.github.phylogeny.bettercushionplacement;
 
+import com.github.phylogeny.bettercushionplacement.network.GameRuleSyncHandler;
 import com.github.phylogeny.bettercushionplacement.registry.CommonGameRules;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
@@ -78,25 +79,11 @@ public class EntityHelper {
             }
         }
         if (!sneaking && !sprinting)
-            return snapElevationTOPixelGrid(original, placeContext);
+            return original;
 
         Grid grid = sprinting ? Grid.PIXEL : Grid.BLOCK;
         Vec3 newPos = sneaking && sprinting ? clicked : grid.snapTo(clicked);
         return new Vec3(newPos.x, clicked.y, newPos.z);
-    }
-
-    private static Vec3 snapElevationTOPixelGrid(
-            Vec3 pos,
-            BlockPlaceContext placeContext
-    ) {
-        if (placeContext.getLevel() instanceof ServerLevel serverLevel) {
-            boolean shouldSnap = serverLevel.getGameRules().get(CommonGameRules.SNAP_CUSHION_ELEVATION_TO_PIXEL_GRID.get());
-            if (shouldSnap) {
-                Vec3 snapped = Grid.PIXEL.snapTo(pos);
-                return new Vec3(pos.x, snapped.y, pos.z);
-            }
-        }
-        return pos;
     }
 
     @Nullable
@@ -139,5 +126,12 @@ public class EntityHelper {
         UseOnContext context = new UseOnContext(player, hand, hitResult);
         stack.useOn(context);
         return InteractionResult.CONSUME;
+    }
+
+    public static boolean bypassCollisionBlockTags(UseOnContext context) {
+        if (!(context.getLevel() instanceof ServerLevel serverLevel))
+            return GameRuleSyncHandler.allowInnerWallCushionPlacement;
+
+        return serverLevel.getGameRules().get(CommonGameRules.ALLOW_INNER_WALL_CUSHION_PLACEMENT.get());
     }
 }

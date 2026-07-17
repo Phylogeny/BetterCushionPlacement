@@ -7,11 +7,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Game rule changed:
+  - Old: `Snap Cushion Elevation To Pixel Grid`
+    - Description: Causes cushion elevation to snap to the nearest pixel, preventing sub-pixel placement on the inner walls of cauldrons, composters, and hoppers.
+    - Default: `Enabled`
+  - New: `Allow Inner Wall Cushion Placement`
+    - Function: Ignores `#cushion_uses_collision_shape` block tags, thus allowing sub-pixel cushion placement on the inner walls of cauldrons, composters, and hoppers without a data pack.
+    - Default: `Disabled`
+
 ### Fixed
 
 - Made mixin method and variable targeting more robust.
 
-## [1.0.0] - 2026-07-13
+## [0.1.0] - 2026-07-13
 
 **Minecraft:** 26.3-snapshot-3
 
@@ -19,4 +29,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Initial release.
+- Initial working state.
