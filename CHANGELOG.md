@@ -7,8 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-17
+
+**Minecraft:** 26.3-snapshot-4
+
+**Loaders:** Fabric
+
 ### Changed
 
+- Updated to 26.3-snapshot-4
 - Game rule changed:
   - Old: `Snap Cushion Elevation To Pixel Grid`
     - Description: Causes cushion elevation to snap to the nearest pixel, preventing sub-pixel placement on the inner walls of cauldrons, composters, and hoppers.
@@ -21,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Made mixin method and variable targeting more robust.
 
-## [0.1.0] - 2026-07-13
+## [0.1.0] - 2026-07-17
 
 **Minecraft:** 26.3-snapshot-3
 
