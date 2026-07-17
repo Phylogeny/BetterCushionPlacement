@@ -80,7 +80,7 @@ Note that raytrace is from the eyes [L84](https://mcsrc.dev/1/26.3-snapshot-4/ne
   - Off
 
 ---
-### if this mod is installed on a server, but not a client, everything will work as intended, with the following purely visual exceptions:
+### If this mod is installed on a server, but not a client, everything will work as intended, with the following purely visual exceptions:
 1. The player's hand will swing
    - Even when cushion placement fails due to intersection with an existing cushion.
 2. The player's hand will not swing
