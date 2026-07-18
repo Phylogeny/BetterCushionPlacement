@@ -1,5 +1,6 @@
 package com.github.phylogeny.bettercushionplacement.registry;
 
+import com.github.phylogeny.bettercushionplacement.network.SyncedGameRule;
 import com.github.phylogeny.bettercushionplacement.platform.Services;
 import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.serialization.Codec;
@@ -10,15 +11,17 @@ import net.minecraft.world.level.gamerules.GameRuleType;
 import net.minecraft.world.level.gamerules.GameRuleTypeVisitor;
 
 public class CommonGameRules {
-    public static final RegistryObj<GameRule<Boolean>> ALLOW_INNER_WALL_CUSHION_PLACEMENT =
-            register("allow_inner_wall_cushion_placement", GameRuleCategory.MISC, false);
+    public static final SyncedGameRule<Boolean> ALLOW_INNER_WALL_CUSHION_PLACEMENT =
+            registerSyncedBoolean("allow_inner_wall_cushion_placement", GameRuleCategory.MISC, false);
+    public static final SyncedGameRule<Boolean> CUSHIONS_SUPPORT_EACH_OTHER =
+            registerSyncedBoolean("cushions_support_each_other", GameRuleCategory.MISC, false);
 
-    private static RegistryObj<GameRule<Boolean>> register(
+    private static SyncedGameRule<Boolean> registerSyncedBoolean(
             String name,
             GameRuleCategory category,
             boolean defaultValue
     ) {
-        return Services.GAME_RULES.register(
+        return new SyncedGameRule<>(Services.GAME_RULES.register(
                 name,
                 () -> new GameRule<>(
                         category,
@@ -29,6 +32,7 @@ public class CommonGameRules {
                         b -> (Boolean) b ? 1 : 0,
                         defaultValue,
                         FeatureFlagSet.of()
-                ));
+                ))
+        );
     }
 }

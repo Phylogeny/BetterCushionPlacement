@@ -1,11 +1,9 @@
 package com.github.phylogeny.bettercushionplacement;
 
-import com.github.phylogeny.bettercushionplacement.network.GameRuleSyncHandler;
 import com.github.phylogeny.bettercushionplacement.registry.CommonGameRules;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
@@ -17,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.entity.EntityTypeTest;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
@@ -129,9 +128,17 @@ public class EntityHelper {
     }
 
     public static boolean bypassCollisionBlockTags(UseOnContext context) {
-        if (!(context.getLevel() instanceof ServerLevel serverLevel))
-            return GameRuleSyncHandler.allowInnerWallCushionPlacement;
+        return CommonGameRules.ALLOW_INNER_WALL_CUSHION_PLACEMENT.get(context.getLevel());
+    }
 
-        return serverLevel.getGameRules().get(CommonGameRules.ALLOW_INNER_WALL_CUSHION_PLACEMENT.get());
+    public static boolean allowStackedCushions(Level level, AABB boundingBox, AABB anchorBox) {
+        if (!CommonGameRules.CUSHIONS_SUPPORT_EACH_OTHER.get(level))
+            return false;
+
+        return level.hasEntities(
+                EntityTypeTest.forClass(Cushion.class),
+                anchorBox,
+                cushion -> !cushion.getBoundingBox().equals(boundingBox)
+        );
     }
 }

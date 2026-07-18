@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Game rule `Cushions Support Each Other`:
+  - Description: Instead of only being supported by blocks, cushions can also be supported by other cushions, allowing direct stacking.
+  - Default: `Disabled`
+
 ## [0.2.0] - 2026-07-17
 
 **Minecraft:** 26.3-snapshot-4
@@ -21,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Description: Causes cushion elevation to snap to the nearest pixel, preventing sub-pixel placement on the inner walls of cauldrons, composters, and hoppers.
     - Default: `Enabled`
   - New: `Allow Inner Wall Cushion Placement`
-    - Function: Ignores `#cushion_uses_collision_shape` block tags, thus allowing sub-pixel cushion placement on the inner walls of cauldrons, composters, and hoppers without a data pack.
+    - Description: Ignores `#cushion_uses_collision_shape` block tags, thus allowing sub-pixel cushion placement on the inner walls of cauldrons, composters, and hoppers without a data pack.
     - Default: `Disabled`
 
 ### Fixed

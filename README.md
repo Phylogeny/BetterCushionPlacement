@@ -4,13 +4,13 @@
 <h1>Better Cushion Placement</h1>
 </div>
 
-## Cushions can be placed as follows:
+## Placement Mechanics
 
 | Click: block                                                                                                                            | Click: cushion                                                                                                                                               |
 |-----------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/block_grid.png?raw=true" alt="Block Grid"> | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/cushion_stack.png?raw=true" alt="Vertical Pixel Grid Snap: On"> |
 
-### Holding <code>Shift</code>
+### Holding `Shift`
 - Place a cushion horizontally centered on the closest vertex of the block grid.
 - Stack a held cushion on one in the world by interacting with it (if it will have block support).
 
@@ -18,24 +18,65 @@
 
 <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/pixel_grid.png?raw=true" alt="Pixel Grid">
 
-### Holding <code>Control</code>
+### Holding `Control`
 - Place a cushion horizontally centered on the closest vertex of the pixel grid.
 
 ---
 
 <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/off_grid.png?raw=true" alt="Off-Grid">
 
-### Holding <code>Shift</code> + <code>Control</code>
+### Holding `Shift` + `Control`
 - Place a cushion horizontally centered exactly where clicked, completely off-grid.
 
 ---
 
 <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/block_center.png?raw=true" alt="Block Center">
 
-### Holding neither (<em>Vanilla behavior</em>)
+### Holding neither (_Vanilla behavior_)
 - Place a cushion horizontally centered on the closest block grid tile center.
 
 ---
+
+## Game Rules
+
+### Stack cushions directly on one another without block support
+- ID
+    - `bettercushionplacement:cushions_support_each_other`
+- Name
+    - Cushions Support Each Other
+- Description
+    - Instead of only being supported by blocks, cushions can also be supported by other cushions, allowing direct stacking.
+- Default
+    - Disabled
+
+### Background Explanation
+
+Vanilla cushion support is as follows [Cushion_wouldSuriveAt](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#L155-163):
+- [L156-158](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#L156-158) Make an anchor box by taking the bounding box a cushion is or might be, and slightly horizontally shrinking it and vertically expanding it down by 1/4 pixel.
+- [159](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#159) Iterate the blocks intersecting that area additionally expanded down by another 4 pixels.
+    - [160](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#160) For each block, get its general shape.
+    - [161](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#161) Consider it supported if that shape is not empty and if it intersects the anchor box.
+
+If no block support is found, this game rule additionally checks for other cushion entities below it, and considers it supported if one is found.
+
+---
+
+| Flush placement w/o datapack                                                                                                                                        | Close to flush via a sign                                                                                                                                                         |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/cushion_flush_with_block.png?raw=true" alt="Cushion Flush With Block"> | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/cushion_almost_flush_with_block.png?raw=true" alt="Cushion Almost Flush With Block"> |
+
+### Bypass block tags for inner wall sub-pixel placement with a game rule
+- ID
+    - `bettercushionplacement:allow_inner_wall_cushion_placement`
+- Name
+    - Allow Inner Wall Cushion Placement
+- Description
+    - Ignores `#cushion_uses_collision_shape` block tags, thus allowing sub-pixel cushion placement on the inner walls of cauldrons, composters, and hoppers without a data pack.
+- Default
+    - Disabled
+
+### Background Explanation
+
 Vanilla block interaction behavior is as follows [BlockGetter_clipWithInteractionOverride](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L84-96):
 - [L87](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L87) Raytrace a block's main shape.
 - [L88](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L88) Check for hit.
@@ -55,7 +96,7 @@ Whether returning a full block shape or just the inner void shape, all of these 
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/composter_interaction_shape.png?raw=true" alt="Composter Interaction Shape"> | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/hopper_interaction_shape.png?raw=true" alt="Hopper Interaction Shape"> |
 
-The only way to get a raytrace hit on the inner walls of the shapes of these blocks is to get an even closer hit on the top face of their interaction shapes. This means that any inner hit will have the expected inner location vector, but with a direction of `Direction.UP`. So although cushions require interacting with an upward face [CushionItem_useOn#L38](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L38), these blocks uniquely bypass this requirement.
+The only way to get a raytrace hit on the inner walls of the shapes of these blocks is to get an even closer hit on the top face of their interaction shapes. This means that any inner hit will have the expected inner location vector, but with a direction of `Direction.UP`. So although cushions require interacting with an upward face [CushionItem_useOn#L38](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L38-39), these blocks uniquely bypass this requirement.
 
 While sub-pixel placement is still possible (on signs [WallSignBlock_SHAPES](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/WallSignBlock#L27), for example), placement on horizontal faces and arbitrary Y positioning was not intended. This is why Mojang added the `#cushion_uses_collision_shape` block tag, which forces the use of the collision shape raytrace result [CushionItem_recalculateContextForSpecialCollisionShapes#L81-88](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L81-88).
 
@@ -65,21 +106,8 @@ While sub-pixel placement is still possible (on signs [WallSignBlock_SHAPES](htt
 
 Note that raytrace is from the eyes [L84](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L84) to the slightly past the exiting hit result vector [L85-86](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L85-86), and that hit failure defaults to the original hit result [L88](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L88). This means that when a collision shape hit is closer to the eyes than the main shape hit, as with wall blocks [WallBlock_collisionShapes](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/WallBlock#L58), the collision shape will be used. But when the main shape hit is closer, as with soul sand blocks [SoulSandBlock_SHAPE](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/SoulSandBlock#L13), the main shape will be used in spite of having the tag.
 
-| Flush placement w/o datapack                                                                                                                                        | Close to flush via a sign                                                                                                                                                         |
-|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/cushion_flush_with_block.png?raw=true" alt="Cushion Flush With Block"> | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/cushion_almost_flush_with_block.png?raw=true" alt="Cushion Almost Flush With Block"> |
-
-### Bypass block tags for inner wall sub-pixel placement with a game rule:
-- ID
-  - `bettercushionplacement:allow_inner_wall_cushion_placement`
-- Name
-  - Allow Inner Wall Cushion Placement
-- Description
-  - Ignores `#cushion_uses_collision_shape` block tags, thus allowing sub-pixel cushion placement on the inner walls of cauldrons, composters, and hoppers without a data pack.
-- Default
-  - Off
-
 ---
+## Server-only Installation
 ### If this mod is installed on a server, but not a client, everything will work as intended, with the following purely visual exceptions:
 1. The player's hand will swing
    - Even when cushion placement fails due to intersection with an existing cushion.

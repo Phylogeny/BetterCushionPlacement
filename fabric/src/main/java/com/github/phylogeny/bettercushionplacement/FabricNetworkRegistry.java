@@ -2,6 +2,7 @@ package com.github.phylogeny.bettercushionplacement;
 
 import com.github.phylogeny.bettercushionplacement.network.GameRuleSyncHandler;
 import com.github.phylogeny.bettercushionplacement.network.GameRuleSyncPayload;
+import com.github.phylogeny.bettercushionplacement.network.SyncedGameRule;
 import com.github.phylogeny.bettercushionplacement.registry.CommonGameRules;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.gamerule.v1.GameRuleEvents;
@@ -16,16 +17,21 @@ public class FabricNetworkRegistry {
                 GameRuleSyncPayload.TYPE,
                 GameRuleSyncPayload.STREAM_CODEC
         );
+        registerGameRuleChangeSync(CommonGameRules.ALLOW_INNER_WALL_CUSHION_PLACEMENT);
+        registerGameRuleChangeSync(CommonGameRules.CUSHIONS_SUPPORT_EACH_OTHER);
+        ServerPlayConnectionEvents.JOIN.register((handler, _, server) ->
+                ServerPlayNetworking.send(handler.player, new GameRuleSyncPayload(server))
+        );
+    }
+
+    private static void registerGameRuleChangeSync(SyncedGameRule<Boolean> syncedRule) {
         GameRuleEvents
-                .changeCallback(CommonGameRules.ALLOW_INNER_WALL_CUSHION_PLACEMENT.get())
-                .register((value, server) -> {
-                    GameRuleSyncPayload payload = new GameRuleSyncPayload(value);
+                .changeCallback(syncedRule.rule())
+                .register((_, server) -> {
+                    GameRuleSyncPayload payload = new GameRuleSyncPayload(server);
                     for (ServerPlayer player : server.getPlayerList().getPlayers())
                         ServerPlayNetworking.send(player, payload);
                 });
-        ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
-            ServerPlayNetworking.send(handler.player, new GameRuleSyncPayload(server));
-        });
     }
 
     public static void registerClient() {
