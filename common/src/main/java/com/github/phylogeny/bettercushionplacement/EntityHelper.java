@@ -112,9 +112,6 @@ public class EntityHelper {
                 || cushion.isVehicle())
             return null;
 
-        if (cushion.level().isClientSide())
-            return InteractionResult.SUCCESS;
-
         Vec3 newLocation = cushion.position();
         BlockHitResult hitResult = new BlockHitResult(
                 newLocation,
@@ -123,8 +120,7 @@ public class EntityHelper {
                 false
         );
         UseOnContext context = new UseOnContext(player, hand, hitResult);
-        stack.useOn(context);
-        return InteractionResult.CONSUME;
+        return stack.useOn(context);
     }
 
     public static boolean bypassCollisionBlockTags(UseOnContext context) {

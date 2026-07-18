@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Description: Instead of only being supported by blocks, cushions can also be supported by other cushions, allowing direct stacking.
   - Default: `Disabled`
 
+### Fixed
+
+- Fixed bug where a player's hand would swing even when failing to stack a cushion on another cushion.
+
 ## [0.2.0] - 2026-07-17
 
 **Minecraft:** 26.3-snapshot-4
