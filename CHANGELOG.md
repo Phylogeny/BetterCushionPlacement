@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-07-19
+
+**Minecraft:** 26.3-snapshot-4
+
+**Loaders:** Fabric
+
 ### Added
 
 - Game rule `Cushions Support Each Other`:
