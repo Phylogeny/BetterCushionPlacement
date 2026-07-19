@@ -1,11 +1,14 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "com.github.phylogeny.bettercushionplacement.mixin",
   "compatibilityLevel": "JAVA_25",
+  "plugin": "${group}.mixin.MixinConfigPlugin",
+  "package": "${group}.mixin",
   "mixins": [
     "MixinCushionItem",
-    "MixinCushion"
+    "MixinInnerWallCushionPlacement",
+    "MixinCushionsSupportEachOther",
+    "MixinCushionSupport"
   ],
   "client": [],
   "server": [],

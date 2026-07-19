@@ -2,13 +2,10 @@ package com.github.phylogeny.bettercushionplacement.mixin;
 
 import com.github.phylogeny.bettercushionplacement.EntityHelper;
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.decoration.Cushion;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.CushionItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -64,18 +61,5 @@ public class MixinCushionItem {
             @Local(name = "placeContext") BlockPlaceContext placeContext
     ) {
         EntityHelper.adjustEntityPosition(cushion, entityPos, placeContext);
-    }
-
-    @Inject(
-            method = "recalculateContextForSpecialCollisionShapes(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/item/context/UseOnContext;",
-            at = @At("HEAD"),
-            cancellable = true
-    )
-    private static void bypassCollisionBlockTags(
-            CallbackInfoReturnable<UseOnContext> cir,
-            @Local(argsOnly = true, name = "context") UseOnContext context
-    ) {
-        if (EntityHelper.bypassCollisionBlockTags(context))
-            cir.setReturnValue(context);
     }
 }

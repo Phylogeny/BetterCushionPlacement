@@ -37,6 +37,15 @@
 
 ---
 
+## Configs
+
+Game rule features (`Cushions Support Each Other` and `Snap Cushion Elevation To Pixel Grid`) can be set to always enabled or always disabled in the `bettercushionplacement-gamerules.properties` file in the `config` folder.
+- If set to always enabled/disabled the corresponding rule will not exist, but the feature will.
+- If set to always disabled, the corresponding mixin that provides the feature will not be applied.
+    - This means that even the negligible performance cost of the method call the mixin results in will be prevented.
+
+---
+
 ## Game Rules
 
 ### Stack cushions directly on one another without block support

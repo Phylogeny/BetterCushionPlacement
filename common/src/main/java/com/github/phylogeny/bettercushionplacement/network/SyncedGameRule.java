@@ -2,37 +2,20 @@ package com.github.phylogeny.bettercushionplacement.network;
 
 import com.github.phylogeny.bettercushionplacement.registry.RegistryObj;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.gamerules.GameRule;
+import org.jetbrains.annotations.Nullable;
 
-public final class SyncedGameRule<T> {
-    private final RegistryObj<GameRule<T>> registryObj;
-    private T clientValue;
+public interface SyncedGameRule<T> {
+    @Nullable
+    RegistryObj<GameRule<T>> registryObj();
 
-    public SyncedGameRule(RegistryObj<GameRule<T>> registryObj) {
-        this.registryObj = registryObj;
-    }
+    @Nullable
+    GameRule<T> rule();
 
-    public RegistryObj<GameRule<T>> registryObj() {
-        return registryObj;
-    }
+    T get(MinecraftServer server);
 
-    public GameRule<T> rule() {
-        return registryObj.get();
-    }
+    T get(Level level);
 
-    public T get(MinecraftServer server) {
-        return server.getGameRules().get(registryObj.get());
-    }
-
-    public T get(Level level) {
-        return level instanceof ServerLevel serverLevel
-                ? get(serverLevel.getServer())
-                : clientValue;
-    }
-
-    public void setClientValue(T value) {
-        clientValue = value;
-    }
+    void setClientValue(T value);
 }

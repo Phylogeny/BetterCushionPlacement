@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Description: Instead of only being supported by blocks, cushions can also be supported by other cushions, allowing direct stacking.
   - Default: `Disabled`
 
+- Game rule features (`Cushions Support Each Other` and `Snap Cushion Elevation To Pixel Grid`) can be set to always enabled or always disabled in the `bettercushionplacement-gamerules.properties` file in the `config` folder.
+  - If set to always enabled/disabled the corresponding rule will not exist, but the feature will.
+  - If set to always disabled, the corresponding mixin that provides the feature will not be applied.
+    - This means that even the negligible performance cost of the method call the mixin results in will be prevented.
+
 ### Fixed
 
 - Fixed bug where a player's hand would swing even when failing to stack a cushion on another cushion.

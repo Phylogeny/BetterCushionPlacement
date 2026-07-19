@@ -1,5 +1,8 @@
 package com.github.phylogeny.bettercushionplacement.registry;
 
+import com.github.phylogeny.bettercushionplacement.mixin.MixinConfigPlugin;
+import com.github.phylogeny.bettercushionplacement.network.ImmutableSyncedGameRule;
+import com.github.phylogeny.bettercushionplacement.network.MutableSyncedGameRule;
 import com.github.phylogeny.bettercushionplacement.network.SyncedGameRule;
 import com.github.phylogeny.bettercushionplacement.platform.Services;
 import com.mojang.brigadier.arguments.BoolArgumentType;
@@ -12,16 +15,30 @@ import net.minecraft.world.level.gamerules.GameRuleTypeVisitor;
 
 public class CommonGameRules {
     public static final SyncedGameRule<Boolean> ALLOW_INNER_WALL_CUSHION_PLACEMENT =
-            registerSyncedBoolean("allow_inner_wall_cushion_placement", GameRuleCategory.MISC, false);
+            registerSyncedBoolean(
+                    MixinConfigPlugin.Mixin.INNER_WALL_CUSHION_PLACEMENT.registryName,
+                    GameRuleCategory.MISC,
+                    false,
+                    MixinConfigPlugin.Mixin.INNER_WALL_CUSHION_PLACEMENT
+            );
     public static final SyncedGameRule<Boolean> CUSHIONS_SUPPORT_EACH_OTHER =
-            registerSyncedBoolean("cushions_support_each_other", GameRuleCategory.MISC, false);
+            registerSyncedBoolean(
+                    MixinConfigPlugin.Mixin.CUSHIONS_SUPPORT_EACH_OTHER.registryName,
+                    GameRuleCategory.MISC,
+                    false,
+                    MixinConfigPlugin.Mixin.CUSHIONS_SUPPORT_EACH_OTHER
+            );
 
     private static SyncedGameRule<Boolean> registerSyncedBoolean(
             String name,
             GameRuleCategory category,
-            boolean defaultValue
+            boolean defaultValue,
+            MixinConfigPlugin.Mixin mixin
     ) {
-        return new SyncedGameRule<>(Services.GAME_RULES.register(
+        if (mixin.getMode() != MixinConfigPlugin.MixinMode.GAME_RULE)
+            return new ImmutableSyncedGameRule<>(mixin.getMode() == MixinConfigPlugin.MixinMode.ENABLED);
+ 
+        return new MutableSyncedGameRule<>(Services.GAME_RULES.register(
                 name,
                 () -> new GameRule<>(
                         category,

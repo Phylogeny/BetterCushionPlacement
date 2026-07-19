@@ -10,6 +10,8 @@ import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.level.gamerules.GameRule;
+import org.jetbrains.annotations.Nullable;
 
 public class FabricNetworkRegistry {
     public static void registerCommon() {
@@ -25,8 +27,12 @@ public class FabricNetworkRegistry {
     }
 
     private static void registerGameRuleChangeSync(SyncedGameRule<Boolean> syncedRule) {
+        @Nullable GameRule<Boolean> rule = syncedRule.rule();
+        if (rule == null)
+            return;
+
         GameRuleEvents
-                .changeCallback(syncedRule.rule())
+                .changeCallback(rule)
                 .register((_, server) -> {
                     GameRuleSyncPayload payload = new GameRuleSyncPayload(server);
                     for (ServerPlayer player : server.getPlayerList().getPlayers())
