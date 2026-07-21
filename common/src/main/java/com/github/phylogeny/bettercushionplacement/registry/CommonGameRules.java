@@ -16,30 +16,27 @@ import net.minecraft.world.level.gamerules.GameRuleTypeVisitor;
 public class CommonGameRules {
     public static final SyncedGameRule<Boolean> ALLOW_INNER_WALL_CUSHION_PLACEMENT =
             registerSyncedBoolean(
-                    MixinConfigPlugin.Mixin.INNER_WALL_CUSHION_PLACEMENT.registryName,
+                    MixinConfigPlugin.Mixin.INNER_WALL_CUSHION_PLACEMENT,
                     GameRuleCategory.MISC,
-                    false,
-                    MixinConfigPlugin.Mixin.INNER_WALL_CUSHION_PLACEMENT
+                    false
             );
     public static final SyncedGameRule<Boolean> CUSHIONS_SUPPORT_EACH_OTHER =
             registerSyncedBoolean(
-                    MixinConfigPlugin.Mixin.CUSHIONS_SUPPORT_EACH_OTHER.registryName,
+                    MixinConfigPlugin.Mixin.CUSHIONS_SUPPORT_EACH_OTHER,
                     GameRuleCategory.MISC,
-                    false,
-                    MixinConfigPlugin.Mixin.CUSHIONS_SUPPORT_EACH_OTHER
+                    false
             );
 
     private static SyncedGameRule<Boolean> registerSyncedBoolean(
-            String name,
+            MixinConfigPlugin.Mixin mixin,
             GameRuleCategory category,
-            boolean defaultValue,
-            MixinConfigPlugin.Mixin mixin
+            boolean defaultValue
     ) {
         if (mixin.getMode() != MixinConfigPlugin.MixinMode.GAME_RULE)
             return new ImmutableSyncedGameRule<>(mixin.getMode() == MixinConfigPlugin.MixinMode.ENABLED);
  
         return new MutableSyncedGameRule<>(Services.GAME_RULES.register(
-                name,
+                mixin.registryName,
                 () -> new GameRule<>(
                         category,
                         GameRuleType.BOOL,

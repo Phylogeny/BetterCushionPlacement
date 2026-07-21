@@ -9,8 +9,10 @@ import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.MinecraftServer;
 
-public record GameRuleSyncPayload(boolean allowInnerWallCushionPlacement, boolean cushionsSupportEachOther)
-        implements CustomPacketPayload {
+public record GameRuleSyncPayload(
+        boolean allowInnerWallCushionPlacement,
+        boolean cushionsSupportEachOther
+) implements CustomPacketPayload {
 
     public static final Identifier ID = Constants.MOD_IDENTIFIER.withPath("game_rule_sync");
 
