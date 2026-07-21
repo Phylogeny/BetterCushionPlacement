@@ -1,10 +1,12 @@
 package com.github.phylogeny.bettercushionplacement;
 
 import com.github.phylogeny.bettercushionplacement.registry.CommonGameRules;
+import com.github.phylogeny.bettercushionplacement.registry.CommonTags;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -42,13 +44,13 @@ public class EntityHelper {
         }
     }
 
-    private static boolean isSneaking(BlockPlaceContext placeContext) {
+    private static boolean isSneaking(UseOnContext placeContext) {
         return Optional.ofNullable(placeContext.getPlayer())
                 .map(Player::isSecondaryUseActive)
                 .orElse(false);
     }
 
-    private static boolean isSprinting(BlockPlaceContext placeContext) {
+    private static boolean isSprinting(UseOnContext placeContext) {
         Player player = placeContext.getPlayer();
         if (player instanceof ServerPlayer serverPlayer)
             return serverPlayer.getLastClientInput().sprint();
@@ -60,14 +62,19 @@ public class EntityHelper {
 
     public static Vec3 adjustPlacementPosition(
             Vec3 original,
-            BlockPlaceContext placeContext
+            UseOnContext context
     ) {
-        Vec3 clicked = placeContext.getClickLocation();
-        boolean sneaking = isSneaking(placeContext);
-        boolean sprinting = isSprinting(placeContext);
+        if (context.getLevel()
+                .getBlockState(context.getClickedPos())
+                .is(CommonTags.Blocks.NORMAL_CUSHION_PLACEMENT))
+            return original;
+
+        Vec3 clicked = context.getClickLocation();
+        boolean sneaking = isSneaking(context);
+        boolean sprinting = isSprinting(context);
         if (sneaking) {
             Vec3 finalClicked = clicked;
-            Cushion cushion = placeContext.getLevel().getEntitiesOfClass(
+            Cushion cushion = context.getLevel().getEntitiesOfClass(
                     Cushion.class,
                     AABB.ofSize(original, 0.1, 0.1, 0.1),
                     entity -> entity.position().equals(finalClicked)

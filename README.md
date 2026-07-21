@@ -37,6 +37,16 @@
 
 ---
 
+## Block Tags
+- ID
+  - `#normal_cushion_placement`
+- Description
+  - Forces the normal center-of-block placement of cushions when placing them against blocks with this tag.
+- Default
+  - Contains blocks with the `#signs` block tag.
+
+---
+
 ## Configs
 
 Game rule features (`Cushions Support Each Other` and `Snap Cushion Elevation To Pixel Grid`) can be set to always enabled or always disabled in the `bettercushionplacement-gamerules.properties` file in the `config` folder.

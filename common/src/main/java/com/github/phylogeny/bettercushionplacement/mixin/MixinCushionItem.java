@@ -6,6 +6,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.decoration.Cushion;
 import net.minecraft.world.item.CushionItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -25,9 +26,9 @@ public class MixinCushionItem {
             name = "entityPos")
     private Vec3 adjustPlacementPosition(
             Vec3 entityPos,
-            @Local(name = "placeContext") BlockPlaceContext placeContext
+            @Local(name = "recalculatedContext") UseOnContext recalculatedContext
     ) {
-        return EntityHelper.adjustPlacementPosition(entityPos, placeContext);
+        return EntityHelper.adjustPlacementPosition(entityPos, recalculatedContext);
     }
 
     @Inject(

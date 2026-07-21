@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Block tag `#normal_cushion_placement` forces the normal center-of-block placement of cushions when placing them against blocks with that tag.
+  - By default, this only contains blocks with the `#signs` block tag.
+
 ### Fixed
 
 - Fixed mismatched comments in game rule config file.
