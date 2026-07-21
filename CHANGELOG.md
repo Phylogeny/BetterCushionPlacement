@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-07-21
+
+**Minecraft:** 26.3-snapshot-5
+
+**Loaders:** Fabric
+
 ### Added
 
 - Block tag `#normal_cushion_placement` forces the normal center-of-block placement of cushions when placing them against blocks with that tag.
