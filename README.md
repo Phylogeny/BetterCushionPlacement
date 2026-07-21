@@ -70,11 +70,11 @@ Game rule features (`Cushions Support Each Other` and `Snap Cushion Elevation To
 
 ### Background Explanation
 
-Vanilla cushion support is as follows [Cushion_wouldSuriveAt](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#L155-163):
-- [L156-158](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#L156-158) Make an anchor box by taking the bounding box a cushion is or might be, and slightly horizontally shrinking it and vertically expanding it down by 1/4 pixel.
-- [159](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#159) Iterate the blocks intersecting that area additionally expanded down by another 4 pixels.
-    - [160](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#160) For each block, get its general shape.
-    - [161](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/entity/decoration/Cushion#161) Consider it supported if that shape is not empty and if it intersects the anchor box.
+Vanilla cushion support is as follows [Cushion_wouldSuriveAt](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/entity/decoration/Cushion#L155-163):
+- [L156-158](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/entity/decoration/Cushion#L156-158) Make an anchor box by taking the bounding box a cushion is or might be, and slightly horizontally shrinking it and vertically expanding it down by 1/4 pixel.
+- [159](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/entity/decoration/Cushion#159) Iterate the blocks intersecting that area additionally expanded down by another 4 pixels.
+    - [160](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/entity/decoration/Cushion#160) For each block, get its general shape.
+    - [161](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/entity/decoration/Cushion#161) Consider it supported if that shape is not empty and if it intersects the anchor box.
 
 If no block support is found, this game rule additionally checks for other cushion entities below it, and considers it supported if one is found.
 
@@ -96,18 +96,18 @@ If no block support is found, this game rule additionally checks for other cushi
 
 ### Background Explanation
 
-Vanilla block interaction behavior is as follows [BlockGetter_clipWithInteractionOverride](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L84-96):
-- [L87](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L87) Raytrace a block's main shape.
-- [L88](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L88) Check for hit.
-   - [L89](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L89) If hit, raytrace the block's interaction shape.
-   - [L90](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L90) Check for hit, and check if it's closer to the eyes than the main shape hit.
-      - [L91](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/BlockGetter#L91) If the interaction shape hit is closer than main shape hit, substitute the direction of the hit result with the new direction.
+Vanilla block interaction behavior is as follows [BlockGetter_clipWithInteractionOverride](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/BlockGetter#L84-96):
+- [L87](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/BlockGetter#L87) Raytrace a block's main shape.
+- [L88](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/BlockGetter#L88) Check for hit.
+   - [L89](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/BlockGetter#L89) If hit, raytrace the block's interaction shape.
+   - [L90](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/BlockGetter#L90) Check for hit, and check if it's closer to the eyes than the main shape hit.
+      - [L91](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/BlockGetter#L91) If the interaction shape hit is closer than main shape hit, substitute the direction of the hit result with the new direction.
 
-Blocks by default have no interaction shape [BlockBehaviour_getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/state/BlockBehaviour#L296-298), with the following exceptions:
-- Cauldrons [getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/AbstractCauldronBlock#L71-74)
-- Composters [getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/ComposterBlock#L102-105)
-- Hoppers [getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/HopperBlock#L72-75)
-- Scaffolding [getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/ScaffoldingBlock#L67-70)
+Blocks by default have no interaction shape [BlockBehaviour_getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/block/state/BlockBehaviour#L296-298), with the following exceptions:
+- Cauldrons [getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/block/AbstractCauldronBlock#L71-74)
+- Composters [getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/block/ComposterBlock#L102-105)
+- Hoppers [getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/block/HopperBlock#L72-75)
+- Scaffolding [getInteractionShape](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/block/ScaffoldingBlock#L67-70)
 
 Whether returning a full block shape or just the inner void shape, all of these blocks have interactions shapes with solid flat tops flush with the top of the block space.
 
@@ -115,15 +115,15 @@ Whether returning a full block shape or just the inner void shape, all of these 
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/composter_interaction_shape.png?raw=true" alt="Composter Interaction Shape"> | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/hopper_interaction_shape.png?raw=true" alt="Hopper Interaction Shape"> |
 
-The only way to get a raytrace hit on the inner walls of the shapes of these blocks is to get an even closer hit on the top face of their interaction shapes. This means that any inner hit will have the expected inner location vector, but with a direction of `Direction.UP`. So although cushions require interacting with an upward face [CushionItem_useOn#L38](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L38-39), these blocks uniquely bypass this requirement.
+The only way to get a raytrace hit on the inner walls of the shapes of these blocks is to get an even closer hit on the top face of their interaction shapes. This means that any inner hit will have the expected inner location vector, but with a direction of `Direction.UP`. So although cushions require interacting with an upward face [CushionItem_useOn#L38](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/item/CushionItem#L38-39), these blocks uniquely bypass this requirement.
 
-While sub-pixel placement is still possible (on signs [WallSignBlock_SHAPES](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/WallSignBlock#L27), for example), placement on horizontal faces and arbitrary Y positioning was not intended. This is why Mojang added the `#cushion_uses_collision_shape` block tag, which forces the use of the collision shape raytrace result [CushionItem_recalculateContextForSpecialCollisionShapes#L81-88](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L81-88).
+While sub-pixel placement is still possible (on signs [WallSignBlock_SHAPES](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/block/WallSignBlock#L27), for example), placement on horizontal faces and arbitrary Y positioning was not intended. This is why Mojang added the `#cushion_uses_collision_shape` block tag, which forces the use of the collision shape raytrace result [CushionItem_recalculateContextForSpecialCollisionShapes#L81-88](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/item/CushionItem#L81-88).
 
 | Wall collision placement                                                                                                                                            | Soul Sand collision placement                                                                                                                                                 |
 |---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/wall_collision_placement.png?raw=true" alt="Wall Collision Placement"> | <img width="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/soul_sand_collision_placement.png?raw=true" alt="Soul Sand Collision Placement"> |
 
-Note that raytrace is from the eyes [L84](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L84) to the slightly past the exiting hit result vector [L85-86](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L85-86), and that hit failure defaults to the original hit result [L88](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/item/CushionItem#L88). This means that when a collision shape hit is closer to the eyes than the main shape hit, as with wall blocks [WallBlock_collisionShapes](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/WallBlock#L58), the collision shape will be used. But when the main shape hit is closer, as with soul sand blocks [SoulSandBlock_SHAPE](https://mcsrc.dev/1/26.3-snapshot-4/net/minecraft/world/level/block/SoulSandBlock#L13), the main shape will be used in spite of having the tag.
+Note that raytrace is from the eyes [L84](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/item/CushionItem#L84) to the slightly past the exiting hit result vector [L85-86](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/item/CushionItem#L85-86), and that hit failure defaults to the original hit result [L88](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/item/CushionItem#L88). This means that when a collision shape hit is closer to the eyes than the main shape hit, as with wall blocks [WallBlock_collisionShapes](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/block/WallBlock#L58), the collision shape will be used. But when the main shape hit is closer, as with soul sand blocks [SoulSandBlock_SHAPE](https://mcsrc.dev/1/26.3-snapshot-5/net/minecraft/world/level/block/SoulSandBlock#L13), the main shape will be used in spite of having the tag.
 
 ---
 ## Server-only Installation
