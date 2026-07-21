@@ -21,6 +21,9 @@
         ],
         "client": [
             "${group}.client.FabricClientSetup"
+        ],
+        "fabric-datagen": [
+            "${group}.datagen.DataGeneration"
         ]
     },
     "mixins": [

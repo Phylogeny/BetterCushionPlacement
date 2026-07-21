@@ -29,6 +29,13 @@ loom {
     }
 }
 
+fabricApi {
+    configureDataGeneration() {
+        client = true
+        outputDirectory = project(":common").file("src/generated/resources")
+    }
+}
+
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements', 'includeInternal', 'modCompileClasspath'].each { variant ->
     configurations.named(variant) {
