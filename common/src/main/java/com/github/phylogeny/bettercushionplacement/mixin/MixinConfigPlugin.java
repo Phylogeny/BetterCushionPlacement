@@ -46,13 +46,13 @@ public class MixinConfigPlugin implements IMixinConfigPlugin {
                 "MixinCushionsSupportEachOther",
                 "cushions_support_each_other",
                 MixinMode.GAME_RULE,
-                "Ignores #cushion_uses_collision_shape block tags, thus allowing sub-pixel cushion placement on the inner walls of cauldrons, composters, and hoppers without a data pack."
+                "Instead of only being supported by blocks, cushions can also be supported by other cushions, allowing direct stacking."
         ),
         INNER_WALL_CUSHION_PLACEMENT(
                 "MixinInnerWallCushionPlacement",
                 "allow_inner_wall_cushion_placement",
                 MixinMode.GAME_RULE,
-                "Instead of only being supported by blocks, cushions can also be supported by other cushions, allowing direct stacking."
+                "Ignores #cushion_uses_collision_shape block tags, thus allowing sub-pixel cushion placement on the inner walls of cauldrons, composters, and hoppers without a data pack."
         );
 
         private final AtomicReference<MixinMode> mode;

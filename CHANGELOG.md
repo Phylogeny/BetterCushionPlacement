@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed mismatched comments in game rule config file.
+
 ## [1.0.0] - 2026-07-19
 
 **Minecraft:** 26.3-snapshot-4
