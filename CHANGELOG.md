@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Mod Menu support for localizing mod name, description, and summary
+
 ## [1.2.0] - 2026-07-23
 
 **Minecraft:** 26.3-snapshot-5

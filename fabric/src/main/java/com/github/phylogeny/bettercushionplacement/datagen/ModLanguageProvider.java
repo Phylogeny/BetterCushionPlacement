@@ -23,6 +23,19 @@ public class ModLanguageProvider extends FabricLanguageProvider {
             HolderLookup.Provider registryLookup,
             TranslationBuilder translationBuilder
     ) {
+        String modMenuKey = "modmenu.%s." + Constants.MOD_ID;
+        translationBuilder.add(
+                modMenuKey.formatted("nameTranslation"),
+                Constants.MOD_DISPLAY_NAME
+        );
+        translationBuilder.add(
+                modMenuKey.formatted("descriptionTranslation"),
+                Constants.MOD_DESCRIPTION
+        );
+        translationBuilder.add(
+                modMenuKey.formatted("summaryTranslation"),
+                "Block/pixel grid snapping, placement previews, cushion stacking, & more."
+        );
         for (MixinConfigPlugin.Mixin mixin : MixinConfigPlugin.Mixin.values()) {
             String key = "gamerule.%s.%s".formatted(Constants.MOD_ID, mixin.registryName);
             String name = Arrays
