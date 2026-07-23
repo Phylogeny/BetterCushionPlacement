@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-07-23
+
+**Minecraft:** 26.3-snapshot-5
+
+**Loaders:** Fabric
+
 ### Added
 
 - A cushion placement preview box renders where a cushion will place with the color it will have when placed.
