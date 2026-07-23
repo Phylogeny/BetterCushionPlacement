@@ -4,6 +4,12 @@
 <h1>Better Cushion Placement</h1>
 </div>
 
+## Visual Summary
+
+<img hight="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/cushion_placement_small.gif?raw=true" alt="Cushion Placement">
+
+---
+
 ## Placement Mechanics
 
 | Click: block                                                                                                                            | Click: cushion                                                                                                                                               |
@@ -34,6 +40,14 @@
 
 ### Holding neither (_Vanilla behavior_)
 - Place a cushion horizontally centered on the closest block grid tile center.
+
+---
+
+## Placement Preview 
+
+<img hight="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/cushion_placement_preview_small.gif?raw=true" alt="Cushion Placement Preview">
+
+A box renders where a cushion will place with the color it will have when placed.
 
 ---
 

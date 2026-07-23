@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import java.util.Optional;
 
 @Mixin(CushionItem.class)
-public class MixinCushionItem {
+public class MixinCushionPlacement {
     @ModifyVariable(
             method = "useOn(Lnet/minecraft/world/item/context/UseOnContext;)Lnet/minecraft/world/InteractionResult;",
             at = @At("STORE"),

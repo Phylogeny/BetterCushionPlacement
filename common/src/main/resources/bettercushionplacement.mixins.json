@@ -5,10 +5,10 @@
   "plugin": "${group}.mixin.MixinConfigPlugin",
   "package": "${group}.mixin",
   "mixins": [
-    "MixinCushionItem",
+    "MixinCushionPlacement",
     "MixinInnerWallCushionPlacement",
-    "MixinCushionsSupportEachOther",
-    "MixinCushionSupport"
+    "MixinStackCushions",
+    "MixinCushionsSupportEachOther"
   ],
   "client": [],
   "server": [],
