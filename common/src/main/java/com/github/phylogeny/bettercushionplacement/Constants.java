@@ -8,8 +8,10 @@ public class Constants {
     public static final String MOD_ID = "bettercushionplacement";
     public static final String MOD_NAME = "BetterCushionPlacement";
     public static final String MOD_DISPLAY_NAME = "Better Cushion Placement";
+    public static final String MOD_INITIALS = "bcp";
     public static final Identifier MOD_IDENTIFIER = Identifier.fromNamespaceAndPath(MOD_ID, "");
     public static final Logger LOG = LoggerFactory.getLogger(MOD_NAME);
+    public static final String YACL_MOD_ID = "yet_another_config_lib_v3";
     public static final String MOD_DESCRIPTION = """
             Cushions can be placed as follows:
             

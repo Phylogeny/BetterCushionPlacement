@@ -63,10 +63,44 @@ A box renders where a cushion will place with the color it will have when placed
 
 ## Configs
 
-Game rule features (`Cushions Support Each Other` and `Snap Cushion Elevation To Pixel Grid`) can be set to always enabled or always disabled in the `bettercushionplacement-gamerules.properties` file in the `config` folder.
+### Client Config `bcp-client.conf`:
+
+`Placement Preview`: Configures how to render a placement preview box for cushions
+- `Enabled`
+  - Whether to render a placement preview box for cushions.
+- `Line Width Override`
+  - If positive, the lines of the box will render with this.
+    - If negative, they will render with the default size.
+    - If zero, rendering will be skipped.
+- `Opacity`
+  - The box will render with this alpha value.
+    - If zero, rendering will be skipped.
+- `Color`
+  - The color the box will render as. The color will be:
+    - `CUSHION_COLOR`: The dye color the cushion will be when placed.
+    - `DYE_COLOR_OVERRIDE`: The dye color specified by the `Dye Color Override` confg.
+    - In both cases, the variant of the dye color will be specified by the 'Dye Color Variant' config.
+    - `COLOR_OVERRIDE`: The color specified by the `Color Override` confg.
+- `Dye Color Override`
+  - If the `Color` config is set to `DYE_COLOR_OVERRIDE`, the box will render as this dye color.
+    - Otherwise, this will be ignored.
+- `Color Override`
+  - If the `Color` config is set to `COLOR_OVERRIDE`, the box will render as this color.
+    - Otherwise, this will be ignored.
+- `Dye Color Variant`
+  - If the `Color` config is set to `COLOR_OVERRIDE`, the box will render as this color.
+    - Otherwise, this will be ignored.
+
+### Common Config `bcp-common.conf`:
+Game rule features (`Cushions Support Each Other` and `Snap Cushion Elevation To Pixel Grid`, _see below_) can be set to always enabled or always disabled in the `bettercushionplacement-gamerules.properties` file in the `config` folder.
 - If set to always enabled/disabled the corresponding rule will not exist, but the feature will.
 - If set to always disabled, the corresponding mixin that provides the feature will not be applied.
     - This means that even the negligible performance cost of the method call the mixin results in will be prevented.
+
+### Config Screen
+- `Yet Another Config Lib` config screen is accessible through `Mod Menu` for changing configs in-game.
+  - Only when `Mod Menu` and `Yet Another Config Lib` are both installed.
+  - Localized mod name, description, and summary can still be viewed if only `Mod Menu` is installed.
 
 ---
 

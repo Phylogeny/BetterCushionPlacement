@@ -36,7 +36,25 @@ neoForge {
     }
 }
 
-sourceSets.main.resources { srcDir 'src/generated/resources' }
+dependencies {
+    implementation "dev.isxander:yet-another-config-lib:${yacl_neoforge_version}"
+//    configDeps.each {
+//        jarjar it
+//    }
+}
+
+sourceSets {
+    main {
+        java.srcDir(rootProject.file("shared/src/main/java"))
+        resources {
+            srcDir 'src/generated/resources'
+        }
+    }
+}
+
+processResources {
+    from(project(":common").file("src/generated/resources"))
+}
 
 def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
 ['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->

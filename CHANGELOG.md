@@ -9,7 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Mod Menu support for localizing mod name, description, and summary
+- Client Config `bcp-client.conf`:
+  - Configures cushion preview rendering.
+- Common Config `bcp-common.conf`:
+  - Configures game rule features.
+  - Replaces `bettercushionplacement-gamerules.properties`.
+- `Mod Menu` support for viewing localized mod name, description, and summary.
+  - Only when `Mod Menu` is installed.
+- `Yet Another Config Lib` config screen is accessible through `Mod Menu` for changing configs in-game.
+  - Only when `Mod Menu` and `Yet Another Config Lib` are both installed.
+
+### Removed
+
+- `bettercushionplacement-gamerules.properties`, as it was replaced by `bcp-common.conf`.
 
 ## [1.2.0] - 2026-07-23
 
