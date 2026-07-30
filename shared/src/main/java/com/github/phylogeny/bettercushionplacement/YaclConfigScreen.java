@@ -187,6 +187,9 @@ public class YaclConfigScreen {
                                 Component.translatable(entry.descriptionTranslationKey())
                         )
                 );
+                if (entry.requiresGameRestart())
+                    option.flag(OptionFlag.GAME_RESTART);
+
                 category.option(option.build());
             }
         }
@@ -239,9 +242,6 @@ public class YaclConfigScreen {
             }
             return builder;
         });
-        if (enumClass.isAssignableFrom(MixinConfigPlugin.MixinMode.class))//TODO replace with propper per-entry flagging
-            option.flag(OptionFlag.GAME_RESTART);
-
         return option;
     }
 

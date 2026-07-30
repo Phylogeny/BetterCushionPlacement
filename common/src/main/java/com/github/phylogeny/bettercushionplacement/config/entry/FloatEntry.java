@@ -7,6 +7,7 @@ import java.util.Optional;
 public record FloatEntry(
         @Override String translationKey,
         @Override Float defaultValue,
+        @Override boolean requiresGameRestart,
         @Override Float min,
         @Override Float max,
         @Nullable Float increment,

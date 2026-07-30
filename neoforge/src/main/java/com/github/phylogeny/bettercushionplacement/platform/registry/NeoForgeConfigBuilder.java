@@ -61,6 +61,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
     public BooleanEntry define(
             String name,
             boolean defaultValue,
+            boolean requiresGameRestart,
             boolean useTickBox,
             String comment,
             String translationKey
@@ -72,6 +73,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
         return new BooleanEntry(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 useTickBox,
                 new NeoForgeConfigEntry<>(
                         entry,
@@ -84,6 +86,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
     public IntegerEntry defineInRange(
             String name,
             int defaultValue,
+            boolean requiresGameRestart,
             int min,
             int max,
             @Nullable Integer increment,
@@ -102,6 +105,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
         return new IntegerEntry(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -116,6 +120,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
     public FloatEntry defineInRange(
             String name,
             float defaultValue,
+            boolean requiresGameRestart,
             float min,
             float max,
             @Nullable Float increment,
@@ -134,6 +139,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
         return new FloatEntry(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -148,6 +154,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
     public DoubleEntry defineInRange(
             String name,
             double defaultValue,
+            boolean requiresGameRestart,
             double min,
             double max,
             @Nullable Double increment,
@@ -166,6 +173,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
         return new DoubleEntry(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -180,6 +188,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
     public <V extends Enum<V>> EnumEntry<V> defineEnum(
             String name,
             V defaultValue,
+            boolean requiresGameRestart,
             String comment,
             String translationKey
     ) {
@@ -190,6 +199,7 @@ public class NeoForgeConfigBuilder implements ConfigBuilder<ModConfigSpec, ModCo
         return new EnumEntry<>(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 new NeoForgeConfigEntry<>(
                         entry,
                         entry::set

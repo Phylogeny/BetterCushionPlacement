@@ -31,6 +31,7 @@ public class CommonConfig<S, T> extends ConfigFile<S, T> {
             return defineEnum(
                     mixin.registryName,
                     mixin.defaultMode,
+                    true,
                     mixin.comment
             );
         }

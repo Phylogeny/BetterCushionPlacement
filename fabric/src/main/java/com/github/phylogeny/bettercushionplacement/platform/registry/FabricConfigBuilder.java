@@ -105,6 +105,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
     public BooleanEntry define(
             String name,
             boolean defaultValue,
+            boolean requiresGameRestart,
             boolean useTickBox,
             String comment,
             String translationKey
@@ -123,6 +124,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
         return new BooleanEntry(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 useTickBox,
                 entry
         );
@@ -131,6 +133,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
     private <T extends Number> FabricConfigEntry<T> getConfigEntry(
             String name,
             T defaultValue,
+            boolean requiresGameRestart,
             T min,
             T max,
             T value,
@@ -160,6 +163,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
     public IntegerEntry defineInRange(
             String name,
             int defaultValue,
+            boolean requiresGameRestart,
             int min,
             int max,
             @Nullable Integer increment,
@@ -181,6 +185,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
         FabricConfigEntry<Integer> entry = getConfigEntry(
                 name,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 value,
@@ -190,6 +195,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
         return new IntegerEntry(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -201,6 +207,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
     public FloatEntry defineInRange(
             String name,
             float defaultValue,
+            boolean requiresGameRestart,
             float min,
             float max,
             @Nullable Float increment,
@@ -222,6 +229,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
         FabricConfigEntry<Float> entry = getConfigEntry(
                 name,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 value,
@@ -231,6 +239,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
         return new FloatEntry(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -242,6 +251,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
     public DoubleEntry defineInRange(
             String name,
             double defaultValue,
+            boolean requiresGameRestart,
             double min,
             double max,
             @Nullable Double increment,
@@ -263,6 +273,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
         FabricConfigEntry<Double> entry = getConfigEntry(
                 name,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 value,
@@ -272,6 +283,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
         return new DoubleEntry(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -283,6 +295,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
     public <V extends Enum<V>> EnumEntry<V> defineEnum(
             String name,
             V defaultValue,
+            boolean requiresGameRestart,
             String comment,
             String translationKey
     ) {
@@ -306,6 +319,7 @@ public class FabricConfigBuilder implements ConfigBuilder<CommentedConfiguration
         return new EnumEntry<>(
                 translationKey,
                 defaultValue,
+                requiresGameRestart,
                 entry
         );
     }

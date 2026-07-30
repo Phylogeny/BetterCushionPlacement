@@ -22,4 +22,6 @@ public interface ConfigEntry<T> extends ConfigNode, Supplier<T>, Consumer<T> {
     default void accept(T value) {
         set(value);
     }
+
+    boolean requiresGameRestart();
 }

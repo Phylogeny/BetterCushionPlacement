@@ -7,6 +7,7 @@ import java.util.Optional;
 public record DoubleEntry(
         @Override String translationKey,
         @Override Double defaultValue,
+        @Override boolean requiresGameRestart,
         @Override Double min,
         @Override Double max,
         @Nullable Double increment,

@@ -61,6 +61,7 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
     protected BooleanEntry define(
             String name,
             boolean defaultValue,
+            boolean requiresGameRestart,
             boolean useTickBox,
             String comment
     ) {
@@ -68,6 +69,7 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
                 name,
                 defaultValue,
                 useTickBox,
+                requiresGameRestart,
                 comment,
                 getTranslationKey(name, comment)
         ));
@@ -78,18 +80,19 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
             boolean defaultValue,
             String comment
     ) {
-        return addNode(builder.define(
+        return define(
                 name,
                 defaultValue,
                 false,
-                comment,
-                getTranslationKey(name, comment)
-        ));
+                false,
+                comment
+        );
     }
 
     protected IntegerEntry defineInRange(
             String name,
             int defaultValue,
+            boolean requiresGameRestart,
             int min,
             int max,
             @Nullable Integer increment,
@@ -98,6 +101,7 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
         return addNode(builder.defineInRange(
                 name,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -111,11 +115,31 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
             int defaultValue,
             int min,
             int max,
+            Integer increment,
             String comment
     ) {
         return defineInRange(
                 name,
                 defaultValue,
+                false,
+                min,
+                max,
+                increment,
+                comment
+        );
+    }
+
+    protected IntegerEntry defineInRange(
+            String name,
+            int defaultValue,
+            int min,
+            int max,
+            String comment
+    ) {
+        return defineInRange(
+                name,
+                defaultValue,
+                false,
                 min,
                 max,
                 (Integer) null,
@@ -126,6 +150,7 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
     protected FloatEntry defineInRange(
             String name,
             float defaultValue,
+            boolean requiresGameRestart,
             float min,
             float max,
             @Nullable Float increment,
@@ -134,6 +159,7 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
         return addNode(builder.defineInRange(
                 name,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -147,11 +173,31 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
             float defaultValue,
             float min,
             float max,
+            Float increment,
             String comment
     ) {
         return defineInRange(
                 name,
                 defaultValue,
+                false,
+                min,
+                max,
+                increment,
+                comment
+        );
+    }
+
+    protected FloatEntry defineInRange(
+            String name,
+            float defaultValue,
+            float min,
+            float max,
+            String comment
+    ) {
+        return defineInRange(
+                name,
+                defaultValue,
+                false,
                 min,
                 max,
                 (Float) null,
@@ -162,6 +208,7 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
     protected Supplier<Double> defineInRange(
             String name,
             double defaultValue,
+            boolean requiresGameRestart,
             double min,
             double max,
             @Nullable Double increment,
@@ -170,6 +217,7 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
         return addNode(builder.defineInRange(
                 name,
                 defaultValue,
+                requiresGameRestart,
                 min,
                 max,
                 increment,
@@ -183,11 +231,31 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
             double defaultValue,
             double min,
             double max,
+            Double increment,
             String comment
     ) {
         return defineInRange(
                 name,
                 defaultValue,
+                false,
+                min,
+                max,
+                increment,
+                comment
+        );
+    }
+
+    protected Supplier<Double> defineInRange(
+            String name,
+            double defaultValue,
+            double min,
+            double max,
+            String comment
+    ) {
+        return defineInRange(
+                name,
+                defaultValue,
+                false,
                 min,
                 max,
                 (Double) null,
@@ -198,14 +266,29 @@ public class ConfigFolder<S, T> extends ConfigFolderBase {
     protected <V extends Enum<V>> EnumEntry<V> defineEnum(
             String name,
             V defaultValue,
+            boolean requiresGameRestart,
             String comment
     ) {
         return addNode(builder.defineEnum(
                 name,
                 defaultValue,
+                requiresGameRestart,
                 comment,
                 getTranslationKey(name, comment)
         ));
+    }
+
+    protected <V extends Enum<V>> EnumEntry<V> defineEnum(
+            String name,
+            V defaultValue,
+            String comment
+    ) {
+        return defineEnum(
+                name,
+                defaultValue,
+                false,
+                comment
+        );
     }
 
     protected void closeFolder() {

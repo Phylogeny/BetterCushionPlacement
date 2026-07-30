@@ -7,6 +7,7 @@ import java.util.Optional;
 public record IntegerEntry(
         @Override String translationKey,
         @Override Integer defaultValue,
+        @Override boolean requiresGameRestart,
         @Override Integer min,
         @Override Integer max,
         @Nullable Integer increment,

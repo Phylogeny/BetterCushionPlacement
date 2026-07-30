@@ -3,6 +3,7 @@ package com.github.phylogeny.bettercushionplacement.config.entry;
 public record EnumEntry<E extends Enum<E>>(
         @Override String translationKey,
         @Override E defaultValue,
+        @Override boolean requiresGameRestart,
         LoaderConfigEntry<E> entry
 ) implements ConfigEntry<E> {
     public E get() {

@@ -24,6 +24,7 @@ public interface ConfigBuilder<S, T> {
     BooleanEntry define(
             String name,
             boolean defaultValue,
+            boolean requiresGameRestart,
             boolean useTickBox,
             String comment,
             String translationKey
@@ -32,6 +33,7 @@ public interface ConfigBuilder<S, T> {
     IntegerEntry defineInRange(
             String name,
             int defaultValue,
+            boolean requiresGameRestart,
             int min,
             int max,
             @Nullable Integer increment,
@@ -42,6 +44,7 @@ public interface ConfigBuilder<S, T> {
     FloatEntry defineInRange(
             String name,
             float defaultValue,
+            boolean requiresGameRestart,
             float min,
             float max,
             @Nullable Float increment,
@@ -52,6 +55,7 @@ public interface ConfigBuilder<S, T> {
     DoubleEntry defineInRange(
             String name,
             double defaultValue,
+            boolean requiresGameRestart,
             double min,
             double max,
             @Nullable Double increment,
@@ -62,6 +66,7 @@ public interface ConfigBuilder<S, T> {
     <V extends Enum<V>> EnumEntry<V> defineEnum(
             String name,
             V defaultValue,
+            boolean requiresGameRestart,
             String comment,
             String translationKey
     );
