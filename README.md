@@ -63,7 +63,14 @@ A box renders where a cushion will place with the color it will have when placed
 
 ## Configs
 
+Folder: `config/bettercushionplacement/`
+
 <img hight="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/config_gui_placement_preview.png?raw=true" alt="Config GUI">
+
+### Config Screen
+- `Yet Another Config Lib` config screen is accessible through `Mod Menu` for changing configs in-game.
+  - Only when `Mod Menu` and `Yet Another Config Lib` are both installed.
+  - Localized mod name, description, and summary can still be viewed if only `Mod Menu` is installed.
 
 ### Client Config `bcp-client.conf`:
 
@@ -98,11 +105,6 @@ Game rule features (`Cushions Support Each Other` and `Snap Cushion Elevation To
 - If set to always enabled/disabled the corresponding rule will not exist, but the feature will.
 - If set to always disabled, the corresponding mixin that provides the feature will not be applied.
     - This means that even the negligible performance cost of the method call the mixin results in will be prevented.
-
-### Config Screen
-- `Yet Another Config Lib` config screen is accessible through `Mod Menu` for changing configs in-game.
-  - Only when `Mod Menu` and `Yet Another Config Lib` are both installed.
-  - Localized mod name, description, and summary can still be viewed if only `Mod Menu` is installed.
 
 ---
 
