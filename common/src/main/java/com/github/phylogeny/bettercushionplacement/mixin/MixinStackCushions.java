@@ -1,6 +1,6 @@
 package com.github.phylogeny.bettercushionplacement.mixin;
 
-import com.github.phylogeny.bettercushionplacement.EntityHelper;
+import com.github.phylogeny.bettercushionplacement.util.EntityUtil;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -25,7 +25,7 @@ public class MixinStackCushions {
             @Local(argsOnly = true, name = "player") Player player,
             @Local(argsOnly = true, name = "hand") InteractionHand hand
     ) {
-        Optional.ofNullable(EntityHelper.stackCushion(player, (Cushion)(Object)this, hand))
+        Optional.ofNullable(EntityUtil.stackCushion(player, (Cushion)(Object)this, hand))
                 .ifPresent(cir::setReturnValue);
     }
 }

@@ -1,7 +1,6 @@
 package com.github.phylogeny.bettercushionplacement.client;
 
-import com.github.phylogeny.bettercushionplacement.DyedAABB;
-import com.github.phylogeny.bettercushionplacement.EntityHelper;
+import com.github.phylogeny.bettercushionplacement.util.EntityUtil;
 import com.github.phylogeny.bettercushionplacement.config.Configs;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
@@ -14,7 +13,7 @@ import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.Shapes;
 
-public class ClientHelper {
+public class ClientUtil {
     public static void renderCushionPlacementPreview(
             PoseStack poseStack,
             LevelRenderState levelRenderState,
@@ -35,7 +34,7 @@ public class ClientHelper {
             return;
 
         HitResult hitResult = mc.hitResult;
-        DyedAABB spawnAABB = EntityHelper.getCushionSpawnBox(player, level, hitResult);
+        DyedAABB spawnAABB = EntityUtil.getCushionSpawnBox(player, level, hitResult);
         if (spawnAABB == null)
             return;
 

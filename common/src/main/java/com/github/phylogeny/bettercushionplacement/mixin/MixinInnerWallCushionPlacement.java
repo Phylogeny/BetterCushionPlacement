@@ -1,6 +1,6 @@
 package com.github.phylogeny.bettercushionplacement.mixin;
 
-import com.github.phylogeny.bettercushionplacement.EntityHelper;
+import com.github.phylogeny.bettercushionplacement.util.EntityUtil;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.item.CushionItem;
 import net.minecraft.world.item.context.UseOnContext;
@@ -20,7 +20,7 @@ public class MixinInnerWallCushionPlacement {
             CallbackInfoReturnable<UseOnContext> cir,
             @Local(argsOnly = true, name = "context") UseOnContext context
     ) {
-        if (EntityHelper.bypassCollisionBlockTags(context))
+        if (EntityUtil.bypassCollisionBlockTags(context))
             cir.setReturnValue(context);
     }
 }

@@ -1,6 +1,6 @@
 package com.github.phylogeny.bettercushionplacement.mixin;
 
-import com.github.phylogeny.bettercushionplacement.EntityHelper;
+import com.github.phylogeny.bettercushionplacement.util.EntityUtil;
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.entity.decoration.Cushion;
@@ -21,6 +21,6 @@ public class MixinCushionsSupportEachOther {
             @Local(argsOnly = true, name = "boundingBox") AABB boundingBox,
             @Local(name = "anchorBox") AABB anchorBox
     ) {
-        return wouldSurvive || EntityHelper.allowStackedCushions(level, boundingBox, anchorBox);
+        return wouldSurvive || EntityUtil.allowStackedCushions(level, boundingBox, anchorBox);
     }
 }

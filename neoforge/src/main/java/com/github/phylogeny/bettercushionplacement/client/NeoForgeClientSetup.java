@@ -26,7 +26,7 @@ public class NeoForgeClientSetup {
 
     @SubscribeEvent
     public static void renderCushionPlacementPreview(SubmitCustomGeometryEvent event) {
-        ClientHelper.renderCushionPlacementPreview(
+        ClientUtil.renderCushionPlacementPreview(
                 event.getPoseStack(),
                 event.getLevelRenderState(),
                 event.getSubmitNodeCollector()

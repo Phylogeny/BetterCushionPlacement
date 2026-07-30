@@ -1,6 +1,5 @@
 package com.github.phylogeny.bettercushionplacement.client;
 
-import com.github.phylogeny.bettercushionplacement.DyedAABB;
 import com.github.phylogeny.bettercushionplacement.config.Configs;
 import com.github.phylogeny.bettercushionplacement.util.LangUtil;
 import net.minecraft.util.ARGB;

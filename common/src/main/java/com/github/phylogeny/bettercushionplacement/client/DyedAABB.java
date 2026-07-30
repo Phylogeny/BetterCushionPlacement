@@ -1,4 +1,4 @@
-package com.github.phylogeny.bettercushionplacement;
+package com.github.phylogeny.bettercushionplacement.client;
 
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.phys.AABB;

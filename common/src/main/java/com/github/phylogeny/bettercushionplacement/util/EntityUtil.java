@@ -1,5 +1,6 @@
-package com.github.phylogeny.bettercushionplacement;
+package com.github.phylogeny.bettercushionplacement.util;
 
+import com.github.phylogeny.bettercushionplacement.client.DyedAABB;
 import com.github.phylogeny.bettercushionplacement.registry.CommonGameRules;
 import com.github.phylogeny.bettercushionplacement.registry.CommonTags;
 import net.minecraft.client.player.LocalPlayer;
@@ -27,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class EntityHelper {
+public class EntityUtil {
     private enum Grid {
         BLOCK(1.0),
         PIXEL(1 / 16.0);

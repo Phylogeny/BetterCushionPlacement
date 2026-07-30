@@ -9,7 +9,7 @@ public class FabricClientSetup implements ClientModInitializer {
     public void onInitializeClient() {
         FabricNetworkRegistry.registerClient();
         LevelRenderEvents.AFTER_TRANSLUCENT_FEATURES.register(context -> {
-            ClientHelper.renderCushionPlacementPreview(
+            ClientUtil.renderCushionPlacementPreview(
                     context.poseStack(),
                     context.levelState(),
                     context.submitNodeCollector()

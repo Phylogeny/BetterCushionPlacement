@@ -1,6 +1,6 @@
 package com.github.phylogeny.bettercushionplacement.mixin;
 
-import com.github.phylogeny.bettercushionplacement.EntityHelper;
+import com.github.phylogeny.bettercushionplacement.util.EntityUtil;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.decoration.Cushion;
@@ -28,7 +28,7 @@ public class MixinCushionPlacement {
             Vec3 entityPos,
             @Local(name = "recalculatedContext") UseOnContext recalculatedContext
     ) {
-        return EntityHelper.adjustPlacementPosition(entityPos, recalculatedContext);
+        return EntityUtil.adjustPlacementPosition(entityPos, recalculatedContext);
     }
 
     @Inject(
@@ -44,7 +44,7 @@ public class MixinCushionPlacement {
             @Local(name = "level") Level level,
             @Local(name = "spawnAABB") AABB spawnAABB
     ) {
-        Optional.ofNullable(EntityHelper.checkCushionIntersection(level, spawnAABB))
+        Optional.ofNullable(EntityUtil.checkCushionIntersection(level, spawnAABB))
                 .ifPresent(cir::setReturnValue);
     }
 
@@ -61,6 +61,6 @@ public class MixinCushionPlacement {
             @Local(name = "entityPos") Vec3 entityPos,
             @Local(name = "placeContext") BlockPlaceContext placeContext
     ) {
-        EntityHelper.adjustEntityPosition(cushion, entityPos, placeContext);
+        EntityUtil.adjustEntityPosition(cushion, entityPos, placeContext);
     }
 }
