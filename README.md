@@ -63,6 +63,8 @@ A box renders where a cushion will place with the color it will have when placed
 
 ## Configs
 
+<img hight="256" src="https://github.com/Phylogeny/BetterCushionPlacement/blob/readme-assets/config_gui_placement_preview.png?raw=true" alt="Config GUI">
+
 ### Client Config `bcp-client.conf`:
 
 `Placement Preview`: Configures how to render a placement preview box for cushions
