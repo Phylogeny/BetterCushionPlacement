@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Updated to 26.3-snapshot-6
+
 ### Added
 
 - Client Config `bcp-client.conf`:
